@@ -59,9 +59,25 @@
 						<input name="image" type="file" class="form-control" id="image">
 					</div>
 
-					<div class="mb-4">
+					<div class="mb-3">
 						<label for="article" class="form-label">Articolo</label>
 						<textarea name="article" class="form-control" id="article" cols="30" rows="6">{{old('article')}}</textarea>
+					</div>
+					
+					{{-- TAGS --}}
+					<div class="mb-4">
+						<label class="form-label mt-3 mb-2">Aggiungi Tags</label>
+						<div class="row">
+							@foreach($tags as $tag)
+								<div class="col-4">
+									<div class="form-check">
+										{{-- <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}"> --}}
+										<input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+										<label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->name }}</label>
+									</div>
+								</div>
+							@endforeach
+						</div>
 					</div>
 					
 					<div>

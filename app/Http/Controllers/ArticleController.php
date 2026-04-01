@@ -16,7 +16,8 @@ class ArticleController extends Controller
 	 */
 	public function create()
 	{
-		return view('articles.create');
+		$tags = Tag::all();
+		return view('articles.create', ['tags' => $tags]);
 	}
 
 	/**
@@ -30,12 +31,14 @@ class ArticleController extends Controller
 			$imagePath = $request->file('image')->store('media', 'public');
 		}
 
-		Article::create([
+		$article =Article::create([
 			'title' => $request->title,
 			'subtitle' => $request->subtitle,
 			'image' => $imagePath,
 			'article' => $request->article,
 		]);
+
+		$article->tags()->sync($request->tags ?? []);
 
 		return redirect()->route('articles.create')->with('message', 'Post inserito!');
 	}

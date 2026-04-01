@@ -342,6 +342,15 @@ input.form-control[type="file"]:hover::file-selector-button {
 	background-color: var(--gray-ultra-light) !important;
 }
 
+.form-check-input {
+	background-color: var(--bg-white);
+	border-color: var(--gray-middle);
+}
+
+.form-check-input:focus {
+	box-shadow: none;
+}
+
 .form-check-input:checked {
 	background-color: var(--link);
 	border-color: var(--link);
